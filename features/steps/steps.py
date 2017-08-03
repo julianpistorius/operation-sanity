@@ -1,3 +1,4 @@
+from behave import *
 from behaving.mail.steps import *
 from behaving.personas.persona import persona_vars
 from behaving.personas.steps import *
