@@ -61,7 +61,7 @@ Feature: Delete, then launch all featured images
     And I press "Launch Instance"
     And I wait for 10 seconds
     And I double-check that I press "Launch Instance"
-    And I wait up to 90 seconds for instance with name "<image-name>" and provider "<provider>" to finish building
+    And I wait up to 90 seconds for instance with name "<instance-name>" and provider "<provider>" to finish building
 
     Examples: Selected images
       | image-name                  | instance-name            | provider              | size                                   |
