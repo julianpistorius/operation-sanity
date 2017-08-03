@@ -72,6 +72,15 @@ def wait_for_instance_to_finish_building(context, name, provider, timeout=60):
                                                        wait_time=timeout), u'Instance is not deleting'
 
 
+@step(u'I enter "{value}" to "{index}" index of class "{klass}"')
+def i_enter_to_index_of_class(context, klass, value, index):
+    name = "temp_form_name" + str(index)
+    assert context.browser.evaluate_script(
+        "document.getElementsByClassName('%s')[%s].name = '%s'" % (klass, index, name)), \
+        u'Element not found or could not set name'
+    for key in context.browser.type(name, value):
+        assert key
+
 @step(u'I type slowly "{value}" to "{index}" index of class "{klass}"')
 def i_type_to_index_of_class(context, klass, value, index):
     name = "temp_form_name" + str(index)
@@ -79,6 +88,13 @@ def i_type_to_index_of_class(context, klass, value, index):
         u'Element not found or could not set name'
     for key in context.browser.type(name, value, slowly=True):
         assert key
+
+
+@step(u'I fill in instance name with "{value}"')
+@persona_vars
+def i_fill_in_instance_name(context, value):
+    field = context.browser.find_by_id('instanceName').first
+    field.value = value
 
 @step(u'I ask for "{resources}" resources for "{reason}" reason')
 def i_request_resources(context, resources, reason):
